@@ -10,13 +10,13 @@ var makeEditable = function () {
       });
 }
 
-var save = function (id) {
+var save_modal = function (id) {
       SETTINGS['buffer'] = {};
       var url_get = SETTINGS['SERVER'] + SETTINGS['COLECOES'].join(',') + '/verbete/';
       $.getJSON(url_get+id, function (data) {
       var palavra = data['_source'];
       palavra['equivalencia'] = [];
-      $("#orig-"+id +" .equivalencia").each(function (index, item) {
+      $("#orig-"+id +" .equivalencia .editable").each(function (index, item) {
             if (item.textContent != 'Click to edit') {
                   palavra['equivalencia'].push(item.textContent);
             }
@@ -29,9 +29,36 @@ var save = function (id) {
             'id' : id,
             'palavra' : palavra
       };
-      alert('save function');
-      console.log(SETTINGS['buffer']);
+      sugestao.render(SETTINGS['buffer']['palavra']); 
+      $("#save_form").modal('show');
+      $("#save").click(function (e) {
+                save()
+            });
       });
+}
+
+
+var save = function() {
+    var url = SETTINGS['SERVER'] + SETTINGS['COLECOES'].join(',') + '/verbete/';
+    var id = SETTINGS['buffer']['id'];
+    var palavra = SETTINGS['buffer']['palavra'];
+    var post_ops = {
+        'id' : id,
+        'palavra' : palavra,
+        'colecoes' : SETTINGS['COLECOES'].join(',')+'-suggest',
+        'admin' : true
+    }
+    $.post("/s/server.php", post_ops, function (result) {
+        var r = jQuery.parseJSON(result);
+        if (r["ok"]) {
+        SETTINGS['buffer'] = {};
+        $("#save_form").modal('hide');
+        $("#complete").modal('show');
+        }
+        else {
+            console.log(r);
+        }
+    });
 }
 
 var loadOriginal = function (id) {
@@ -41,7 +68,7 @@ var loadOriginal = function (id) {
             $("#orig-"+id+" ol").sortable();
             $("#orig-"+id+ " .save").show();
             $("#orig-"+id+ " .save").click(function (e) {
-                  save(id);
+                  save_modal(id);
             });
             $("#orig-"+id+" li").append("<span class='remove'>X</span>");
             $("#orig-"+id+" li .remove").each(function (index, item) {
@@ -75,6 +102,7 @@ var move = function(id, equiv) {
 $(document).ready(function () {
       sugestoes = Tempo.prepare("sugestoes");
       original = Tempo.prepare("original");
+      sugestao = Tempo.prepare("sugestao");
 
       console.log('Cowabanga!');
       $.getJSON(SETTINGS['SERVER'] + SETTINGS['COLECOES'].join(',')+'-suggest' + '/_search?source=' + JSON.stringify(q), function (data){
