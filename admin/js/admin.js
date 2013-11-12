@@ -45,10 +45,10 @@ var save = function() {
     var post_ops = {
         'id' : id,
         'palavra' : palavra,
-        'colecoes' : SETTINGS['COLECOES'].join(',')+'-suggest',
-        'admin' : true
+        'colecoes' : SETTINGS['COLECOES'].join(','),
+        'admin' : "update"
     }
-    $.post("/s/server.php", post_ops, function (result) {
+    $.post("admin.php", post_ops, function (result) {
         var r = jQuery.parseJSON(result);
         if (r["ok"]) {
         SETTINGS['buffer'] = {};
@@ -81,8 +81,17 @@ var loadOriginal = function (id) {
 }
 
 var remove = function (id) {
-      $("#"+id).remove();
-      //funcao p/ remover do server
+      if (confirm('Remover essa sugestão?')) {
+        $("#"+id).remove();
+        var post_ops = {
+          'id' : id,
+          'colecoes' : SETTINGS['COLECOES'].join(',')+'-suggest', //remove das sugestoes apenas
+          'admin' : "delete"
+        }
+        $.post("admin.php", post_ops, function (result) {
+              alert("Deletado!");
+            });
+      }
 }
 
 var move = function(id, equiv) {
