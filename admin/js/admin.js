@@ -48,7 +48,7 @@ var save = function() {
         'colecoes' : SETTINGS['COLECOES'].join(','),
         'admin' : "update"
     }
-    $.post("admin.php", post_ops, function (result) {
+    $.post("../s/admin.php", post_ops, function (result) {
         var r = jQuery.parseJSON(result);
         if (r["ok"]) {
         SETTINGS['buffer'] = {};
@@ -88,7 +88,7 @@ var remove = function (id) {
           'colecoes' : SETTINGS['COLECOES'].join(',')+'-suggest', //remove das sugestoes apenas
           'admin' : "delete"
         }
-        $.post("admin.php", post_ops, function (result) {
+        $.post("../s/admin.php", post_ops, function (result) {
               alert("Deletado!");
             });
       }
