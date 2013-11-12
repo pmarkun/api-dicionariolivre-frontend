@@ -1,0 +1,16 @@
+.container.admin {
+      text-align: left;
+}
+#sugestoes {
+      float:left;
+}
+
+#original {
+      float:right;
+      width:50%;
+}
+
+.remove {
+      float:right;
+      color:yellow;
+}

@@ -79,7 +79,7 @@ var save = function() {
         'palavra' : palavra,
         'recaptcha_challenge_field' : Recaptcha.get_challenge(),
         'recaptcha_response_field' : Recaptcha.get_response(),
-        'colecoes' : SETTINGS['COLECOES'].join(',')
+        'colecoes' : SETTINGS['COLECOES'].join(',')+'-suggest'
     }
     $.post("/s/server.php", post_ops, function (result) {
         var r = jQuery.parseJSON(result);

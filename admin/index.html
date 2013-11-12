@@ -1,0 +1,70 @@
+<!doctype html>
+<html>
+  
+      <head>
+            <title>Dicionário Hedra</title>
+            <meta name="viewport" content="width=device-width, initial-scale=1">
+            <meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
+            <link rel="stylesheet" href="../css/bootstrap.min.css">
+            <link rel="stylesheet" href="../css/bootstrap-responsive.min.css"> 
+            <script type="text/javascript" src="../js/jquery.min.js"></script>
+            <script type="text/javascript" src="../js/jquery.jeditable.mini.js"></script>
+            <script type="text/javascript" src="../js/jquery.sortable.js"></script>
+            <script type="text/javascript" src="../js/bootstrap.min.js"></script>
+            <script type="text/javascript" src="../js/tempo.min.js"></script>
+            <script type="text/javascript" src="../js/settings.js"></script>
+            <script type="text/javascript" src="js/admin.js"></script>
+            <link rel="stylesheet" href="css/admin.css">
+            <link rel="stylesheet" href="../css/main.css">
+      </head>
+
+<body>
+      <div class="container admin">
+
+            <div id="sugestoes">
+                  <h1>Sugestões</h1>
+                  <div id="{{id}}" class="verbete-suggest" data-template>
+                        <a href="#" class="remove">X</a>
+                        <h3>{{lexema}}</h3>
+                        <b>{{fonetica}}</b> <span>{{gramatical}}</span> <br/>
+                        <ol>
+                          <li class="equivalencia" data-template-for='equivalencia'><span class="editable">{{.}}</span>
+                          </li>
+                        </ol>
+                        <span>{{outros}}</span>
+                  </div>
+            </div>
+            <div id="original">
+                  <h1>Dicionário</h1>
+                  <div id="orig-{{id}}" class="verbete" data-template>
+                  <h3>{{lexema}}</h3>
+                  <b>{{fonetica}}</b> <span>{{gramatical}}</span> <br/>
+                  <ol>
+                  <li class="equivalencia" data-template-for='equivalencia'><span class="editable">{{.}}</span></li>
+                  </ol>
+                  <span>{{outros}}</span>
+                  <a href="#" class="save">salvar</a>
+                  </div>
+            </div>
+            
+            <div id="save_form" class="modal">
+              <h2>Confirmar alteração</h2>
+              <p>Confirme as alterações e clique em OK para enviar.</p>
+              <div id="sugestao">
+                <div data-template>
+                  <h3>{{lexema}}</h3>
+                  <b>{{fonetica}}</b> <span>{{gramatical}}</span> <br/>
+                  <ol>
+                    <li data-template-for='equivalencia'>{{.}}</li>
+                  </ol>
+                  <span>{{outros}}</span>
+                </div>
+              </div>
+              <a id="save" class="btn">OK</a>
+              <a class="btn close" data-dismiss="modal">X</a>
+            </div>
+            <div id="complete" class="modal">
+              <p>Sugestão enviada com sucesso!</p>
+              <a class="btn close" data-dismiss="modal">X</a>
+            </div>
+</body>
