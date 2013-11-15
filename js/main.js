@@ -151,6 +151,12 @@ function render(q) {
         if (SETTINGS['edit']) {
             refreshedit();
         }
+
+        $(".lexema").click(function (d) {
+            id = d.target.parentElement.id;
+            //expand disqus ou facebook para item especifico?
+            //carrega pagina unica?
+        });
     });
 }
 function procurar(palavra) {

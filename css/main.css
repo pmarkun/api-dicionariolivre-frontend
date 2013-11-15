@@ -89,6 +89,14 @@ a:hover {
   height:1px;
   border-bottom:0 !important;
 }
+.menu {
+  float:right;
+}
+
+.menu a {
+  float:left;
+  padding-right:5px;
+}
 #edit {
   float:right;
 }
@@ -145,4 +153,9 @@ a:hover {
 
 .front #verbetes, .front #paginate {
   display:none;
+}
+
+
+.about {
+  text-align: justify;
 }
