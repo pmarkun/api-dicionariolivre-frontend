@@ -159,3 +159,7 @@ a:hover {
 .about {
   text-align: justify;
 }
+
+.comments { 
+  display:none;
+}
