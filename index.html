@@ -23,11 +23,14 @@
 
       <body>
             <div class="container front">
-                <a href="#" id="edit">edit off</a>
+                <div class="menu">
+                  <a href="about.html">sobre</a>
+                  <a href="#" id="edit">edit off</a>
+                </div>
                 <div id="titulo" class="big-space"> 
                   <a href="index.html"><span>dicionário livre</span><div class="bg"></div></a>
                 </div>
-                <h3 id="lang">santome - português</h3>
+                <h3 id="lang">português - português</h3>
               <form id="buscar" class="form-search">
                 <input type="text" placeholder="Palavra...">
                 <button class="btn" type="submit">Buscar</button>
@@ -37,12 +40,13 @@
                     <hr />
                     <div id="{{id}}" class="verbete" data-template>
                         <a href="#" class="add empty">adicionar significado</a>
-                        <h3>{{lexema}}</h3>
+                        <h3 class="lexema">{{lexema}}</h3>
                         <b>{{fonetica}}</b> <span>{{gramatical}}</span> <br/>
                         <ol>
                           <li class="equivalencia" data-template-for='equivalencia'><span class="editable">{{.}}</span></li>
                         </ol>
-                        <span>{{outros}}</span>
+                        <span class="outros">{{outros}}</span>
+                        <div class="comments">Comentários Há!</div>
                         <a href="#" class="save">salvar</a>
                     </div>
               </div>
