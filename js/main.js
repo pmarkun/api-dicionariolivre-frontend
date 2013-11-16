@@ -151,8 +151,7 @@ function render(q) {
         if (SETTINGS['edit']) {
             refreshedit();
         }
-
-        $(".lexema").click(function (d) {
+        $(".lzexema").click(function (d) {
             p = d.target.parentElement;
             //expand disqus ou facebook para item especifico?
             //carrega pagina unica?
