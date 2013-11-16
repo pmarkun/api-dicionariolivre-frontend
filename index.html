@@ -27,9 +27,10 @@
               var js, fjs = d.getElementsByTagName(s)[0];
               if (d.getElementById(id)) return;
               js = d.createElement(s); js.id = id;
-              js.src = "https://connect.facebook.net/pt_BR/all.js#xfbml=1";
+              js.src = "//connect.facebook.net/pt_BR/all.js#xfbml=1";
               fjs.parentNode.insertBefore(js, fjs);
-            }(document, 'script', 'facebook-jssdk'));</script>
+            }(document, 'script', 'facebook-jssdk'));
+            </script>
 
             <div class="container front">
                 <div class="menu">
@@ -49,7 +50,7 @@
                     <hr />
                     <div id="{{id}}" class="verbete" data-template>
                         <a href="#" class="add empty">adicionar significado</a>
-                        <h3 class="lexema">{{lexema}}</h3>
+                        <h3 class="lexema" onclick="javascript:hackishComment(this);">{{lexema}}</h3>
                         <b>{{fonetica}}</b> <span>{{gramatical}}</span> <br/>
                         <ol>
                           <li class="equivalencia" data-template-for='equivalencia'><span class="editable">{{.}}</span></li>
@@ -92,5 +93,14 @@
               <p>Sugestão enviada com sucesso!</p>
               <a class="btn close" data-dismiss="modal">X</a>
             </div>
+            <script>
+              var hackishComment = function(item) {
+                $(item.parentNode).find('.comments').toggle();
+                var isFacebook = $(item.parentNode).find('.fb-comments');
+                if(isFacebook != 'undefined' ) {
+                  FB.XFBML.parse(item.parentNode);
+                }
+              }
+            </script>
       </body>
 </html>
